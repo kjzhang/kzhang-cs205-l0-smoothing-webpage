@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="CS 205 Final Project">
+    <meta name="keywords" content="your,keywords,goes,here">
+    <meta name="author" content="Kevin Zhang / Han He / Design: Andreas Viklund - http://andreasviklund.com/">
+    <link rel="stylesheet" type="text/css" href="css/basic-modular.css">
+    <title>CS 205 Final Project - Kevin Zhang &amp; Han He</title>
+</head>
+
+<body>
+<!-- Layout setting -->
+<div id="container">
+
+<!-- Header block -->
+<div class="header">
+    <h1>Parallel Image Smoothing via L0 Gradient Minimization</h1><br>
+    <p>CS 205 Final Project</p>
+</div>
+<!-- / Header block -->
+
+<!-- Main menu block -->
+<div class="mainmenu">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="problem.html">Problem</a></li>
+        <li><a href="design.html">Design</a></li>
+        <li><a href="application.html">Application</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="conclusions.html">Conclusions</a></li>
+    </ul>
+</div>
+<!-- / Main menu block -->
+
+
+<!-- Single content block -->
+<div class="singlecontent">
+    <h2>Introduction</h2>
+    <p>
+        Image smoothing is a well-studied problem in image processing. Generally, smoothing
+        involves creating an approximation model that attempts to capture large-scale patterns
+        within the image, while leaving out the finer-scale structures. Image smoothing can be
+        roughly categorized into local and global methods. Local methods, like the famous bilateral
+        filter, generally work on local regions or individual patches, while global methods, such
+        as total variation and WLS process the entire image at once.
+    </p>
+    <h2>Our Project</h2>
+    <p>
+        For our CS 205 Final Project, created serial and parallel implementations of a global image
+        processing method involving L0 gradient minimization. In summary, by limiting the overall
+        non-zero gradients between pixels of an image, the major edges can be sharpened while
+        small-amplitude changes are minimized.
+    </p>
+    <p>
+        Our final project is created based on the image smoothing method described in the following
+        paper: "Image Smoothing via L0 Gradient Minimization", Li Xu, Cewu Lu, Yi Xu, Jiayi Jia,
+        ACM Transcations on Graphics, (SIGGRAPH Asia 2011), 2011.
+        <a href="http://www.courses.fas.harvard.edu/~cs278/papers/l0.pdf">Link</a></p>
+    </p>
+    <img src="img/index.png" alt="Image Smoothing Example">
+    
+</div>
+<!-- / Single content block -->
+
+
+<!-- Footer block -->
+<div class="footer">
+    <p>Website © 2012 Kevin Zhang &amp; Han He | Template by <a href="http://andreasviklund.com/">Andreas Viklund</a></p>
+</div>
+<!-- / Footer block -->
+
+</div>
+<!-- / Layout setting -->
+
+</body>
+
+</html>
