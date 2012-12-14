@@ -6,11 +6,11 @@ For more information, see http://andreasviklund.com/templates/basic-modular/
 /* Tags */
 *{margin:0;padding:0;}
 body{background:#d2d4d5;color:#303030;font:76% Verdana,Tahoma,Sans-Serif;text-align:center;}
-p{font-size:0.9em;margin:0 0 16px;}
+p{font-size:1.0em;margin:0 0 16px;}
 a{color:#d56e30;text-decoration:none;}
 a:hover{color:#d56e30;text-decoration:underline;}
-h1{font-size:1.6em;margin:0 0 8px;}
-h2{font-size:1.4em;margin:0 0 8px;}
+h1{font-size:1.8em;margin:0 0 8px;}
+h2{font-size:1.5em;margin:0 0 8px;}
 
 /* Container */
 #container{background:#fff;margin:20px auto;padding:10px 10px 1px;text-align:left;width:820px;}
@@ -18,7 +18,7 @@ h2{font-size:1.4em;margin:0 0 8px;}
 /* Header */
 .header{background:#f5e9d9;clear:both;margin:0 0 10px;padding:10px;}
 .header h1{font-size:1.8em;letter-spacing:-1px;margin:0;padding:10px 0 0 10px;}
-.header p{font-size:1.25em;font-weight:700;margin:0;padding:0 0 10px 10px;}
+.header p{font-size:1.5em;font-weight:700;margin:0;padding:0 0 10px 10px;}
 
 /* Main menu */
 .mainmenu{clear:both;margin:0 0 10px;}

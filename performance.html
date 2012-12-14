@@ -37,13 +37,33 @@
 
 <!-- Single content block -->
 <div class="singlecontent">
-    <h2>Performance</h2>
+    <h2>Setup and Configuration</h2>
     <p>
-        g g g g
+        We were successful in achieving high speedups for the parallel implementation using PyCUDA.
     </p>
+    <p>
+        The optimal kernel configuration was experimentally determined with the largest image
+        (4000x3000 pixels) to be (32, 16, 1) threads per block, meaning 32 in the x-direction
+        and 16 in the y-direction, and 256 total threads per block. A 2D thread configuration
+        instead of a linear one is more efficient because of better memory coalescing, leading to
+        optimizations during memory access. The total number of threads in the X and Y dimensions
+        are equal to the number of pixels in each dimension of the image, since each pixel requires
+        one thread. The grid dimensions can be computed with <span>int(np.ceil(Nx * 1.0/x_tpb))</span>
+        where x_tpb is the number of threads per block in the x direction, and the same is done for
+        the y dimension.
+    </p>
+    <h2>Serial Performance</h2>
     <img src="img/data_serial.png" alt="">
+    <p>
+    </p>
+    <h2>Parallel Performance</h2>
     <img src="img/data_parallel.png" alt="">
+    <p>
+    </p>
+    <h2>Speedup</h2>
     <img src="img/data_total.png" alt="">
+    <p>
+    </p>
 </div>
 <!-- / Single content block -->
 
