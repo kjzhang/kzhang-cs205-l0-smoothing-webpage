@@ -77,8 +77,8 @@
         <center><img src="img/p3.png"></center>
     </p>
     <p>
-        The framework can easily be extended to 2 dimensions. I is the input image while S is the smoothed
-        result. C(S) measures the total L0-norm of the gradients between neighboring pixels:
+        The framework can easily be extended to 2 dimensions. I is the input image while S is the
+        smoothed result. C(S) measures the total L0-norm of the gradients between neighboring pixels:
     </p>
     <p>
         <center><img src="img/p4.png"></center>
@@ -91,15 +91,26 @@
     </p>
     <h2>Approximation</h2>
     <p>
-        The closed form solution is NP-hard, but an approximate solution can be reduced to
-        minimizing a quadradic function, which is much simpler to solve.
+        The closed form solution to the global optimum is NP-hard, but an approximate solution can
+        be reduced to minimizing a quadradic function, which is much simpler to solve. We introduce
+        2 new auxiliary variables h and v corresponding to the gradients in the x and y direction
+        to expand the original terms and update them iteratively. Our new objective function becomes
+        the equation on the right. The new term beta controls the similarity between h, v and the
+        corresponding gradients. When beta becomes large, our new function appraches the original
+        objective on the left.
+    </p>
+    <p>
+        <center><img src="img/p6.png"></center>
+    </p>
+    <p>
+        We limit the overall number of gradient changes in the image by performing an alternating iterative process to approximate our solution, first flattening insignificant details and then amplifying prominent edges within each iteration.
     </p>
     <h2>Algorithm</h2>
     <p>
         We limit the overall number of gradient changes in the image by performing an alternating
         iterative process to approximate our solution, first flattening insignificant details and then
         amplifying prominent edges within each iteration.
-    </p>  
+    </p>
 </div>
 <!-- / Single content block -->
 
