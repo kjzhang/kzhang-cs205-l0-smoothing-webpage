@@ -60,7 +60,25 @@
     <p>
         We predicted the most computationally intensive parts of the program to be the pixel-wise
         operations when solving for (h, v) in Step 1, and the Fourier and inverse transform in Step
-        2. 
+        2. Thus, those two steps were the initial focus of parallelization.
+    </p>
+    <p>
+        To implement our parallel version of the program, we took a copy of the serial version and parallelized
+        portions of the code at a time. We found that communication between host and GPU was expensive, so we
+        tried to keep all computations on the GPU while minimizing the number of transfers. Our parallel
+        implementation only loads data and initializes buffers on the device during initialization. During the
+        iterative steps, buffers are reused and overwritten, and the image is sent back to the host only upon
+        convergence. For example, we created a set of input and output buffers to be used for FFT kernel calls.
+    </p>
+    <p>
+        Our image S is a 3-dimensional array (height, width, depth). The elementwise operations work fine with
+        multiple color channels, but since the FFT input requires a 2D array, we had to split the image into
+        channels before every transform and merge them at the end of the step.
+    </p>
+    <p>
+        We were able to compute all of the pixel-wise operations in parallel on PyCUDA and computed the Fourier
+        transforms with scikits.cuda.fft. We kept two steps in setup in serial, because the run time was small
+        in comparison to the whole program, and the overhead for those calls would take around the same time.
     </p>
     <p>
         You can browse our commented source code at our project GitHub.
