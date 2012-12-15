@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="CS 205 Final Project">
+    <meta name="keywords" content="your,keywords,goes,here">
+    <meta name="author" content="Kevin Zhang / Han He / Design: Andreas Viklund - http://andreasviklund.com/">
+    <link rel="stylesheet" type="text/css" href="css/basic-modular.css">
+    <title>CS 205 Final Project - Kevin Zhang &amp; Han He</title>
+</head>
+
+<body>
+<!-- Layout setting -->
+<div id="container">
+
+<!-- Header block -->
+<div class="header">
+    <h1>Parallel Image Smoothing via L0 Gradient Minimization</h1><br>
+    <p>CS 205 Final Project</p>
+</div>
+<!-- / Header block -->
+
+<!-- Main menu block -->
+<div class="mainmenu">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="problem.html">Problem</a></li>
+        <li><a href="design.html">Design</a></li>
+        <li><a href="application.html">Application</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="conclusions.html">Conclusions</a></li>
+    </ul>
+</div>
+<!-- / Main menu block -->
+
+
+<!-- Single content block -->
+<div class="singlecontent">
+    <h2>Conclusions</h2>
+    <p>
+        Our project demonstrates a fully parallel implementation of a complex algorithm that relies on several dependencies, outside packages, and additional complications. We implemented both the serial and parallel versions, which allows us to compare performance across a variety of image sizes under the same infrastructure and environment. By using PyCUDA, we were able to achieve a tremendous speedup, making the algorithm accessible for larger images, and perhaps in the future, video transformations.
+    </p>
+    <p>
+        The work we did on this project gave us a new appreciation for the difficulty of implementing complex algorithms in parallel. We had several severe struggles with the various dependencies and packages that we had to use to implement the algorithm. Furthermore, in our initial trials, the performance was not as strong as we would have liked, which forced us to parallelize essentially the entire algorithm. There was often times where the bottleneck and the least efficient part of the algorithm turned out to be the hardest part to parallelize, which made it difficult. There are definitely more improvements we can make, such as implementing the algorithm in a faster language, such as C++, or parallelizing the helper functions, but so far we have achieved a substantial speedup through parallelization. If we have time in the future, we may try to implement a parallel C++ version to achieve even better performance. 
+    </p>
+    <p>
+        We both definitely learned a lot throughout this process. It was a really interesting project, taught us more about how parallel development works in a less structured environment (not a problem set) and forced us to hack our way through tough technical problem. We want to thank our TF Brandon for all the help and guidance along the way, as well as Professor Pfister and Cecka for their valuable lectures and problem sets. Thanks for reading about our project!
+    </p>
+</div>
+<!-- / Single content block -->
+
+
+<!-- Footer block -->
+<div class="footer">
+    <p>Website © 2012 Kevin Zhang &amp; Han He | Template by <a href="http://andreasviklund.com/">Andreas Viklund</a></p>
+</div>
+<!-- / Footer block -->
+
+</div>
+<!-- / Layout setting -->
+
+</body>
+
+</html>

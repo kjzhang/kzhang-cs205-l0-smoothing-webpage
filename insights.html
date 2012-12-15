@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="CS 205 Final Project">
+    <meta name="keywords" content="your,keywords,goes,here">
+    <meta name="author" content="Kevin Zhang / Han He / Design: Andreas Viklund - http://andreasviklund.com/">
+    <link rel="stylesheet" type="text/css" href="css/basic-modular.css">
+    <title>CS 205 Final Project - Kevin Zhang &amp; Han He</title>
+</head>
+
+<body>
+<!-- Layout setting -->
+<div id="container">
+
+<!-- Header block -->
+<div class="header">
+    <h1>Parallel Image Smoothing via L0 Gradient Minimization</h1><br>
+    <p>CS 205 Final Project</p>
+</div>
+<!-- / Header block -->
+
+<!-- Main menu block -->
+<div class="mainmenu">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="problem.html">Problem</a></li>
+        <li><a href="design.html">Design</a></li>
+        <li><a href="application.html">Application</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="conclusions.html">Conclusions</a></li>
+    </ul>
+</div>
+<!-- / Main menu block -->
+
+
+<!-- Single content block -->
+<div class="singlecontent">
+    <h2>Insights</h2>
+    <p>
+        Regarding the performance, we noticed that the parallel algorithm, while it may have had a little more overhead and setup time, performed much much better on Step 1 of the image smoothing algorithm. This is due to the fact that we were able to completely parallize Part 1 and use PyCUDA exclusively, with no back and forth transfers between the CPU and the GPU. We also had success with Part 2, although not quite to the same degree, because of the Fourier and inverse Fourier transformations. Overall, the speedup we were able to achieve (over 50x on the largest images) is incredible and a true testiment to the powers of parallel computing. 
+    </p>
+    <p>
+        Regarding the actual implementation, we learned just how hard it is to parallelize every piece of a software. This is especially difficult when we are trying to use complex, premade functions such as the Fourier transformations. Unfortunately, it is usually these complex functions that takes the most time, and thus has the most potential for speedup. It was also interesting to build several complicated kernels, link their input and output types such that they work seamlessly with each other, and use this machine to effectively compute many steps and iterations. Definitely an interesting project. 
+    </p>
+    <p>
+        Finally, it was neet to see the actual outputs and observe how the image changes over various iterations of smoothing the minor details and accenting the major ones. Never knew flowers can look like that before.
+    <h2>Extensions</h2>
+    <p>
+        The first part we can improve is to parallelize the helper functions that are used in both the serial and parallel implementations. We chose not to parallelize these functions because the contributed to a tiny fraction of the overall time, and thus while improvements are possible, they would be largely insignificant. 
+    </p>    
+    <p>
+        There are also several usages that are immediately possible with a bit of additional work. First, we can extend the algorithm to work for videos, which would allow us to remove minor imperfections and create additional contrast. The challenge to this is the speed of the process. While our parallel implementation would be much faster than a serial implementation, the process would most likely still be a very slow even with the overhead divided among the images. This is because even the parallel version requires several seconds on larger images, and with a video containing 25-30 frames per second, this can easily become a few hours on larger, longer videos. One optmization we can try is to perform similar operations on adjacent frames, thus simplifying some calculations, but decreasing accuracy.
+    </p>
+    <p>
+        Second, we can use this method to create an edge extraction tool, which is used for image and feature detection. This is possible because the image smoothing algorithm increases contrast and dampens minor amplitudes, thus making edges more prominent. 
+    </p>    
+</div>
+<!-- / Single content block -->
+
+
+<!-- Footer block -->
+<div class="footer">
+    <p>Website © 2012 Kevin Zhang &amp; Han He | Template by <a href="http://andreasviklund.com/">Andreas Viklund</a></p>
+</div>
+<!-- / Footer block -->
+
+</div>
+<!-- / Layout setting -->
+
+</body>
+
+</html>

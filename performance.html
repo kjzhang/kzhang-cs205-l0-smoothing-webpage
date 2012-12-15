@@ -93,12 +93,37 @@
         performing the required computation on the input images is extremely fast. The majority of the
         recorded run time is most likely from communication between host and GPU.
     </p>
+    <p>
+        In Step 2, similar to the serial version, most of the run time is spent on computing the FFT and IFFT.
+        Just like Step 1, the pixel-wise operations are extremely fast and only account for a small proportion
+        of the run time.
+    </p>
+    <p>
+        We should note that with lambda = 0.02 and kappa = 2.0, we have 22 iterations for the "flowers"
+        series of images used for performance testing. Clearly, with smaller kappa, the program would
+        take many more iterations to run; k = 1.05 requires ~301 iterations, and k = 1.01 requres ~1441
+        iterations. With more iterations, the setup time becomes negligible, and 
+    </p>
     <h2>Speedup</h2>
     <img src="img/data_total.png" alt="">
     <p></p>
     <p>
         We recorded a large increase in performance with the parallel version, with the largest image
-        only taking around seven seconds to complete, corresponding to a speedup of about 50 times.
+        only taking around seven seconds to complete, corresponding to a speedup of about 50 times. Even
+        with higher initialization costs, the parallel version is much more efficient. We can see that
+        problems that are easily parallelized, such as many image processing algorithms, can be solved
+        much more quickly on in parallel on a GPU than in serial on a CPU. With different parameters and
+        more iterations, we can predict a more consistent speedup overall.
+    </p>
+    <p>
+        The scikits.cuda FFT library was used to compute the complex-to-complex FFT and iFFT on the GPU
+        instead of the CPU. A kernel is compiled in setup, similarly to ElementwiseKernel or ReductionKernel,
+        and is used to compute the FFT when passed in a reference to a GPUArray. As we timed the transforms
+        used in Step 2 separately, we can see a significant speedup.
+    </p>
+    <p>
+        Graphs of speedup for each step and overall are provided below. The x-axis is the number of pixels in
+        the image, corresponding to image size, and the y-axis is the speedup over the serial implementation.
     </p>
     <img src="img/graphs_scaled.png" alt="">
 </div>
