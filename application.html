@@ -26,7 +26,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="problem.html">Problem</a></li>
         <li><a href="design.html">Design</a></li>
-        <li><a href="application.html">Application</a></li>
+        <li><a href="application.html" class="active">Application</a></li>
         <li><a href="performance.html">Performance</a></li>
         <li><a href="insights.html">Insights</a></li>
         <li><a href="conclusions.html">Conclusions</a></li>
@@ -81,13 +81,27 @@
     <p>And the results with <code>-v</code>:</p>
 
     <pre><code>    ITERATION 205
-      -subproblem 1: estimate (h,v)
-      --time: 0.000051 (s)
-      -subproblem 2: estimate S + 1
-      --time: 0.028331 (s)
+    -subproblem 1: estimate (h,v)
+    --time: 0.000051 (s)
+    -subproblem 2: estimate S + 1
+    --time: 0.028331 (s)
     </code></pre>
 
-    <p>As a note for setting <code>-k</code>, for the sample flowers image referenced below, k = 2 requires ~22 iterations, k = 1.05 requires ~301 iterations, and k = 1.01 requres ~1441 iterations.</p>    
+    <p>As a note for setting <code>-k</code>, for the sample flowers image referenced below, k = 2 requires ~22 iterations, k = 1.05 requires ~301 iterations, and k = 1.01 requres ~1441 iterations.</p>
+
+    <h2>Outputs</h2>
+
+    <p>Original Picture:</p> 
+    <img src="img/original.png" alt="" width=400>
+    <p>Default Output (<code>-k = 2</code> and <code>-l = .02</code>):</p> 
+    <img src="img/default.png" alt="" width=400>
+    <p>Different Parameters:</p> 
+    <p><code>-k = 2</code> and <code>-l = .04</code></p>    
+    <img src="img/l04.png" alt="" width=400>
+    <p><code>-k = 4</code> and <code>-l = .04</code></p>    
+    <img src="img/k4.png" alt="" width=400>  
+  
+  
 </div>
 <!-- / Single content block -->
 
