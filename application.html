@@ -90,18 +90,20 @@
     <p>As a note for setting <code>-k</code>, for the sample flowers image referenced below, k = 2 requires ~22 iterations, k = 1.05 requires ~301 iterations, and k = 1.01 requres ~1441 iterations.</p>
 
     <h2>Output</h2>
-
-    <p>Original Picture:</p> 
-    <img src="img/original.jpg" alt="" width=400>
-    <p>Default Output (<code>-k = 2</code> and <code>-l = .02</code>):</p> 
-    <img src="img/default.jpg" alt="" width=400>
-    <p>Different Parameters:</p> 
-    <p><code>-k = 2</code> and <code>-l = .04</code></p>    
-    <img src="img/l04.jpg" alt="" width=400>
-    <p><code>-k = 4</code> and <code>-l = .04</code></p>    
-    <img src="img/k4.jpg" alt="" width=400>  
-  
-  
+    <p> 
+        <img src="img/original.jpg" alt="" width=400><img src="img/default.jpg" alt="" width=400>
+    </p>
+    <p>   
+        <img src="img/l04.jpg" alt="" width=400><img src="img/k4.jpg" alt="" width=400>
+    </p>
+    <p>
+        With the original picture, notice the details on the flower and the leaves. We increment
+        lambda, which controls the final level of image structure and smoothness. With a small
+        lambda, many of the details can be maintained. When we increase lambda, the smaller spatial
+        variation vanishes. The main structures, however, are still well maintained. We can also
+        increase kappa, the convergence speed. A lower kappa increases the quality of results at
+        the cost of more iterations.
+    </p
 </div>
 <!-- / Single content block -->
 
