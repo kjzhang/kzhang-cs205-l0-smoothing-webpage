@@ -39,15 +39,33 @@
 <div class="singlecontent">
     <h2>Design</h2>
     <p>
-        Image smoothing is a well-studied problem in image processing. Generally, smoothing
-        involves creating an approximation model that attempts to capture large-scale patterns
-        within the image, while leaving out the finer-scale structures. Image smoothing can be
-        roughly categorized into local and global methods. Local methods, like the famous bilateral
-        filter, generally work on local regions or individual patches, while global methods, such
-        as total variation and WLS process the entire image at once.
+        We first implemented the algorithm in serial. There are several computational steps necessary
+        during setup. First, the optical transfer function (OTF) needs to be computed by taking the FFT of
+        a scaled and centered version of the point spread function (PSF). The modulation transfer curve,
+        the magnitude of the OTF, is used for normalizing after each iteration. Additionally, the FFT of
+        the original input image is also required to increment upon each iteration.
     </p>
-    <img src="img/index.png" alt="Image Smoothing Example">
-    
+    <p>
+        In Step 1, we first compute the gradient of the image, solve for the minimum energy, and then remove
+        the insignificant gradients that are below a certain threshold.
+    </p>
+    <p>
+        In Step 2, we perform a minimization of a quadratic function with our results from Step 1. Since the
+        approximation function is quadratic, calculating the minimum is simple, even with gradient descent.
+        We diagonalize derivative operators after FFT to provide further speedup. We compute the gradient of
+        h and v from Step 1, and then solve for S + 1 in the Fourier domain, with a following IFFT to compute
+        the desired S + 1. Minimizing our objective function in the image domain requires large matrix
+        inversions, which is much more computationally intensive than a few simple pixel-wise operations.
+    </p>
+    <p>
+        We predicted the most computationally intensive parts of the program to be the pixel-wise
+        operations when solving for (h, v) in Step 1, and the Fourier and inverse transform in Step
+        2. 
+    </p>
+    <p>
+        You can browse our commented source code at our project GitHub.
+        <a href="https://github.com/kjzhang/kzhang-cs205-l0-smoothing">Link</a></p>
+    </p>    
 </div>
 <!-- / Single content block -->
 
