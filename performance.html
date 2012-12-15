@@ -37,20 +37,30 @@
 
 <!-- Single content block -->
 <div class="singlecontent">
-    <h2>Setup and Configuration</h2>
+    <h2>Configuration</h2>
     <p>
         We were successful in achieving high speedups for the parallel implementation using PyCUDA.
+        Benchmarks were obtained for various image sizes starting from 252 x 192 to 4096 x 3072
+        pixels. With each successive image, the width and height increase by a factor of 2. The
+        number of iterations before convergence is predetermined for each image by lambda and kappa.
+        With lambda = 0.02 and kappa = 2.0, we have 22 iterations for the "flowers" series of images. 
     </p>
     <p>
         The optimal kernel configuration was experimentally determined with the largest image
-        (4000x3000 pixels) to be (32, 16, 1) threads per block, meaning 32 in the x-direction
+        (4096 x 3072 pixels) to be (32, 16, 1) threads per block, meaning 32 in the x-direction
         and 16 in the y-direction, and 256 total threads per block. A 2D thread configuration
         instead of a linear one is more efficient because of better memory coalescing, leading to
         optimizations during memory access. The total number of threads in the X and Y dimensions
         are equal to the number of pixels in each dimension of the image, since each pixel requires
-        one thread. The grid dimensions can be computed with <span>int(np.ceil(Nx * 1.0/x_tpb))</span>
+        one thread. The grid dimensions can be computed with <code>int(np.ceil(Nx * 1.0/x_tpb))</code>
         where x_tpb is the number of threads per block in the x direction, and the same is done for
         the y dimension.
+    </p>
+    <p>
+        For total run time, image I/O is excluded from the measurements. All other setup and
+        processing is included. Setup times assume that the program has already been run more than
+        once, meaning that the main CUDA kernels and FFT plans are cached and do not need to be
+        compiled.
     </p>
     <h2>Serial Performance</h2>
     <img src="img/data_serial.png" alt="">

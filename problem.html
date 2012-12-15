@@ -37,10 +37,47 @@
 
 <!-- Single content block -->
 <div class="singlecontent">
-    <h2>Introduction</h2>
+    <h2>Framework</h2>
     <p>
-        Image smoothing is a well-studied problem in image processing.
-    </p>    
+        The paper presents a general global smoothing method based on a sparsity measure, which
+        corresponds to the L0-norm of the gradient. A constraint is placed upon the total number
+        of non-zero gradients between pixels. The algorithm consists of two main features,
+        flattening insignificant details by removing small non-zero gradients, and enhancing
+        larger-scale edges, since large gradients are penalized the same amount as small gradients.
+    </p>
+    <p>
+        First, we outline the framework in 1 dimension. We denote the discrete input image as g and
+        the smoothed result by f. We create function c(f) for the number of amplitude changes
+        between neighboring pixels p and p + 1:
+    </p>
+    <p>
+        <center><img src="img/p1.png"></center>
+    </p>
+    <p>
+        Next, we express our objective function. The c(f) = k signifies that the count of non-zero
+        gradients in f is constrained to k. A larger k allows for a finer approximation of the input
+        image.
+    </p>
+    <p>
+        <center><img src="img/p2.png"></center>
+    </p>
+    <p>
+        The cost in our objective function is the quadratic intensity difference term, the total
+        difference sum between pixels of f and g. The cost term ensures that during smoothing, pixels
+        are generally not allowed to have major color changes, meaning diminishing salient edges is
+        usually prevented.
+    </p>
+    <h2>Approximation</h2>
+    <p>
+        The closed form solution is NP-hard, but an approximate solution can be reduced to
+        minimizing a quadradic function, which is much simpler to solve.
+    </p>
+    <h2>Algorithm</h2>
+    <p>
+        We limit the overall number of gradient changes in the image by performing an alternating
+        iterative process to approximate our solution, first flattening insignificant details and then
+        amplifying prominent edges within each iteration.
+    </p>  
 </div>
 <!-- / Single content block -->
 
