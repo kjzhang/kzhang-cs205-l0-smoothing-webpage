@@ -109,6 +109,39 @@
         amplifying prominent edges within each iteration. The goal is to solve the minimization problem
         outlined above.
     </p>
+    <p>
+        Step 1: estimate (h, v) subproblem. We first solve for the h and v terms in our objective function.
+        The subproblem determines the changes between pixels. The objective function for (h, v) is:
+    </p>
+    <p>
+        <center><img src="img/p7.png"></center>
+    </p>
+    <p>
+        Once again the objective function can be further decomposed. We compute the energy at each
+        pixel, mask the values with a threshold dependent on lambda and beta, and then sum them to find
+        the global optimum for the (h, v) objective function.
+    </p>
+    <p>
+        Step 2: estimate S + 1 subproblem. After solving for the optimal (h, v) we can eliminate the terms
+        from our objective function not involving S and solve for S + 1.
+    </p>
+    <p>
+        <center><img src="img/p10.png"></center>
+    </p>
+    <p>
+        The function is quadratic and has a global minimum. We can diagonalize derivative operators after FFT
+        for speedup, avoiding having to compute large matrix inverses. F is the FFT operator, while F* is the
+        complex conjugate.
+    </p>
+    <p>
+        <center><img src="img/p9.png"></center>
+    </p>
+    <p>
+        In conclusion, we have an alternating iterative process. We first solve for (h, v), and then solve for
+        S + 1 in each iteration, while incrementing beta. Once beta reaches a threshold, we have convergence
+        for our solution approximating the original objective function. More detailed theory about the algorithm
+        can be found in the paper.
+    </p>
 </div>
 <!-- / Single content block -->
 
