@@ -62,17 +62,34 @@
         once, meaning that the main CUDA kernels and FFT plans are cached and do not need to be
         compiled.
     </p>
+    <p>
+        Setup includes allocating memory on host (and device), computing the FFT of the original image,
+        computing the OTF, and initializing the CUDA kernels and FFT plans on the parallel implementation.
+    </p>
     <h2>Serial Performance</h2>
     <img src="img/data_serial.png" alt="">
+    <p></p>
     <p>
+        For the serial performance, we found that the application time scaled roughly linearly with the
+        number of pixels in the image. The run time ranges from less than 1 second for the smallest image
+        to almost 6 minutes on the largest. Almost all of the run time in each of the steps was spent on
+        computation. In the serial version, allocating all the needed buffers in setup took negligible time;
+        the time was spent on computing the FFT of the original image and the OTF. As expected, the FFT and
+        IFFT computations within Step 2 
     </p>
     <h2>Parallel Performance</h2>
     <img src="img/data_parallel.png" alt="">
+    <p></p>
     <p>
+        In the parallel implementation, the run times for Step 1 were roughly constant.
+
     </p>
     <h2>Speedup</h2>
     <img src="img/data_total.png" alt="">
+    <p></p>
     <p>
+        We recorded a large increase in performance with the parallel version, with the largest image
+        only taking around seven seconds to complete, corresponding to a speedup of about 50 times.
     </p>
 </div>
 <!-- / Single content block -->
