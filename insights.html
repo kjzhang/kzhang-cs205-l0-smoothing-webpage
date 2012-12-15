@@ -39,23 +39,39 @@
 <div class="singlecontent">
     <h2>Insights</h2>
     <p>
-        Regarding the performance, we noticed that the parallel algorithm, while it may have had a little more overhead and setup time, performed much much better on Step 1 of the image smoothing algorithm. This is due to the fact that we were able to completely parallize Part 1 and use PyCUDA exclusively, with no back and forth transfers between the CPU and the GPU. We also had success with Part 2, although not quite to the same degree, because of the Fourier and inverse Fourier transformations. Overall, the speedup we were able to achieve (over 50x on the largest images) is incredible and a true testiment to the powers of parallel computing. 
+        Regarding the performance, we noticed that the parallel algorithm had more overhead, but
+        performed significantly better on Step 1 of the image smoothing algorithm, due to the fact
+        that many independent operations can be done at once in parallel with PyCUDA exclusively.
+        We also had success with Part 2, although not quite to the same degree, because of the
+        Fourier and inverse Fourier transformations. Overall, we were able to achieve significant
+        speedups (over 50 times on the largest images). We can see that many problems in computer
+        science, especially image processing algorithms, can benefit from parallelization.
     </p>
     <p>
-        Regarding the actual implementation, we learned just how hard it is to parallelize every piece of a software. This is especially difficult when we are trying to use complex, premade functions such as the Fourier transformations. Unfortunately, it is usually these complex functions that takes the most time, and thus has the most potential for speedup. It was also interesting to build several complicated kernels, link their input and output types such that they work seamlessly with each other, and use this machine to effectively compute many steps and iterations. Definitely an interesting project. 
+        Regarding the actual implementation, we the difficulties of parallelizing every piece of a
+        software. Programming FFT operations from scratch on CUDA seemed outside the scope of our
+        knowledge, so we ended up using the premade kernels from the scikits.cuda library. In our
+        case, the pre-made functions ended up taking the most time in our parallel implementation,
+        thus leaving us with less remaining potential for speedup. Another difficulty regarding the
+        FFT was that implementations are different across platforms, such as MATLAB and within python,
+        numpy, pyfft, and scikits.cuda. We spent a lot of time configuring the libraries to work
+        the way we intended to. 
     </p>
-    <p>
-        Finally, it was neet to see the actual outputs and observe how the image changes over various iterations of smoothing the minor details and accenting the major ones. Never knew flowers can look like that before.
     <h2>Extensions</h2>
     <p>
-        The first part we can improve is to parallelize the helper functions that are used in both the serial and parallel implementations. We chose not to parallelize these functions because the contributed to a tiny fraction of the overall time, and thus while improvements are possible, they would be largely insignificant. 
+        The first part we can improve is to parallelize the helper functions that are used in setup of
+        both the serial and parallel implementations, mainly computing the OTF. We kept a matrix roll and
+        one FFT operation in serial, since the computation time was negligible in comparison to the overall
+        run time. While improvements are possible, they would be largely insignificant. 
     </p>    
     <p>
-        There are also several usages that are immediately possible with a bit of additional work. First, we can extend the algorithm to work for videos, which would allow us to remove minor imperfections and create additional contrast. The challenge to this is the speed of the process. While our parallel implementation would be much faster than a serial implementation, the process would most likely still be a very slow even with the overhead divided among the images. This is because even the parallel version requires several seconds on larger images, and with a video containing 25-30 frames per second, this can easily become a few hours on larger, longer videos. One optmization we can try is to perform similar operations on adjacent frames, thus simplifying some calculations, but decreasing accuracy.
+        There are also several usages that are immediately possible with a bit of additional work. As we
+        show in our screencast, the presented method of image smoothing is general and can be used for
+        many different applications. First, as we showed in the screencast, artifacts from JPEG compression
+        can be limited. With addditional work, the smoothed image can also be used to improve edge detection,
+        manipulate and boost details, and improve image abstraction. Finally, our implementation can easily
+        be extended to work for video, similarly to HW5.
     </p>
-    <p>
-        Second, we can use this method to create an edge extraction tool, which is used for image and feature detection. This is possible because the image smoothing algorithm increases contrast and dampens minor amplitudes, thus making edges more prominent. 
-    </p>    
 </div>
 <!-- / Single content block -->
 
